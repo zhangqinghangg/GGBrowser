@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" http-equiv="Content-Type"
+          content="width=device-width,initial-scale=1; charset=UTF-8 "/>
+    <title>测试</title>
+</head>
+<body>
+<h1 align="center">HTML功能界面</h1>
+<hr>
+<h2 style="color:red">系统按键</h2>
+<p>
+    <input type="button" value="手机配置" onclick="showconfig()"/>
+    <input type="button" value="开机"  style="color:ForestGreen" onclick="showToast()"/>
+    <input type="button" value="重启" style="color:Orange" onclick="showToast()"/>
+    <input type="button" value="关机" style="color:Brown" onclick="showshutDown()"/>
+</p>
+<hr>
+<h2 style="color:red">功能按键</h2>
+<h3 style="color:blue">功能1：导医界面</h3>
+<p>
+    <input type="submit" name="Submit2" value="点击" onclick="firm()"/>
+</p>
+<h3 style="color:blue">功能2：文字转语音</h3>
+<p>文本：<input id="text" type="text" name="文本" value="请输入需要转换的文本" style="height:20px;width:250px;color:red;"/>
+</p>
+<p>音调(0,100)：<input id="yindiao" type="text" name="音调" value="50" style="height:20px;width:45px;color:red;"/>
+    音量(0,100)：<input id="yinliang" type="text" name="音量" value="50" style="height:20px;width:45px;color:red;"/>
+</p>
+<p>
+    <input type="submit" name="Submit4" value="语音" onclick="showspeech(text.value,pitch.value,volume.value)"/>
+</p>
+<h3 style="color:blue">功能3：访问后台数据</h3>
+<p>请求码：<input id="data" type="text" name="rescode" value="0001&Dev1"
+              style="height:20px;width:230px;color:red;"/>
+</p>
+<p>
+    <input type="submit" name="Submit5" value="提交" onclick="showdata(element.value)"/>
+</p>
+<h3 style="color:blue">功能4：对话框访问数据</h3>
+<p>
+    <input type="submit" name="Submit3" value="提交" onclick="prom()"/>
+</p>
+
+
+<hr>
+<h2 style="color:red">内容显示区：</h2>
+<p id="demo" style="width:300px;color:DarkGreen"></p>
+</body>
+
+<script language="javascript">
+var element = document.getElementById("data")
+var text = document.getElementById("text")
+var pitch = document.getElementById("yindiao")
+var volume = document.getElementById("yinliang")
+
+ function firm()
+ {
+     if(confirm("请你前往GG导医系统排号？"))
+     {
+         location.href="http://www.ggzzrj.cn:8080/demo/";
+     }
+     else
+     {
+         alert("你选择了不去！那你自己排队去吧");
+     }
+ }
+ function prom()
+ {
+     var str=prompt("请输入正确的json请求包","idLevel：0001&idDev：Dev1");
+     if(str)
+     {
+              document.getElementById("demo").innerHTML= str
+
+     }
+     else{
+      document.getElementById("demo").innerHTML= "感谢您的测试！"
+     }
+ }
+
+function showconfig() {
+        var str = myconfig.config();
+        document.getElementById("demo").innerHTML= str
+     }
+
+
+function showspeech(text,pitch,volume) {
+         myspeech.speech(text,pitch,volume);
+     }
+function showshutDown() {
+         myshutDown.shutDown();
+     }
+
+ function showdata(code) {
+        var str = mydata.data(code);
+        document.getElementById("demo").innerHTML= str
+     }
+
+
+
+
+
+
+
+
+</script>
+
+</html>
+

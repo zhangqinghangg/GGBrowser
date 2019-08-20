@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+        android:id="@+id/TextView_PROM"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/EditText_PROM"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollHorizontally="true"
+        android:selectAllOnFocus="true" />
+
+</LinearLayout>

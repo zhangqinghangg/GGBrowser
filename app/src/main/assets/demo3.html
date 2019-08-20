@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8 "/>
+    <title>分别测试javascript的三种对话框</title>
+    <script language="javascript">
+  function showToast(toast) {
+         javascript:control.showToast(toast);
+     }
+     function log(msg) {
+         consolse.log(msg);
+     }
+  function ale()
+  {
+     alert("这是一个警告对话框！");
+ }
+ function firm()
+ {
+     if(confirm("请你前往GG导医系统排号？"))
+     {
+         location.href="http://www.ggzzrj.cn:8080/demo/";
+     }
+     else
+     {
+         alert("你选择了不去！那你自己排队去吧");
+     }
+ }
+ function prom()
+ {
+     var str=prompt("请输入正确的json请求包","idLevel：0001&idDev：Dev1");
+     if(str)
+     {
+              document.getElementById("demo").innerHTML= str
+
+     }
+     else{
+      document.getElementById("demo").innerHTML= "感谢您的测试！"
+     }
+ }
+
+
+
+    </script>
+</head>
+<body>
+<h1>HTML</h1>
+<hr>
+</p>
+<h3>实现文字转语音功能</h3>
+<p>
+<p>
+    <input type="button" value="speech" onclick="showToast('js调用android吐司成功!xxx')">
+</p>
+<h3>实现后台数据访问功能</h3>
+<p>
+    <input type="submit" name="Submit" value="访问" onclick="ale()"/>
+</p>
+
+<h3>导医对话框</h3>
+<p>
+    <input type="submit" name="Submit2" value="提交" onclick="firm()"/>
+</p>
+
+<h3>访问后台数据</h3>
+<p>
+    <input type="submit" name="Submit3" value="访问" onclick="prom()"/>
+</p>
+
+<hr>
+<p>内容显示区</p>
+<p id="demo"></p>
+</body>
+</html>

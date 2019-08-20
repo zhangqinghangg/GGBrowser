@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" http-equiv="Content-Type"
+          content="width=device-width,initial-scale=1; charset=UTF-8 "/>
+    <title>测试</title>
+
+    <style type="text/css" media="screen">
+   body { padding: 1px; font: 15px '微软雅黑', 'Trebuchet MS', Arial, Helvetica;
+    background-color: #d9dee2; }
+.btn { display: block; position: relative; background: #aaa; padding:4px; float: left; color: #fff; text-decoration: none; cursor: pointer; }
+.btn * { font-style: normal; background-image: url(btn2.png); background-repeat: no-repeat; display: block; position: relative; }
+.btn i { background-position: top left; position: absolute; margin-bottom: -5px;  top: 0; left: 0; width: 5px; height: 5px; }
+.btn span { background-position: bottom left; left: -5px; padding: 0 0 3px 5px; margin-bottom: -2px; }
+.btn span i { background-position: bottom right; margin-bottom: 0; position: absolute; left: 100%; width: 10px; height: 100%; top: 0; }
+.btn span span { background-position: top right; position: absolute; right: -5px; margin-left: 5px; top: -2px; height: 0; }
+* html .btn span,
+* html .btn i { float: left; width: auto; background-image: none; cursor: pointer; }
+.btn.blue { background: #2ae; }
+.btn.green { background: #9d4; }
+.btn.pink { background: #e1a; }
+.btn:hover { background-color: #a00; }
+.btn:active { background-color: #444; }
+.btn[class] {  background-image: url(shade.png); background-position: bottom; }
+* html .btn { border: 1px double #aaa; }
+* html .btn.blue { border-color: #2ae; }
+* html .btn.green { border-color: #9d4; }
+* html .btn.pink { border-color: #e1a; }
+* html .btn:hover { border-color: #a00; }
+p { clear: both; padding-bottom: 1.5em; }
+form { margin-top: 1em; }
+form p .btn { margin-right: 0.5em; }
+textarea { margin: 0.5em 0;}
+
+
+    </style>
+</head>
+<body>
+<form method="post" action="#">
+    <fieldset>
+        <h2 align="center">GGHtmlDemo</h2>
+    </fieldset>
+</form>
+<hr>
+<form method="post" action="#">
+    <fieldset>
+<!--<h3 style="color:red">系统按键</h3>-->
+        <legend style="color:red">系统按键</legend>
+<p>
+    <input class="btn blue" type="button" value="手机配置" onclick="showconfig()"
+           style="height:30px;width:70px;color:White"/>
+    <input type="button" class="btn blue" value="开机"
+           style="height:30px;width:60px;color:White"
+           onclick="showToast()"/>
+    <input class="btn blue" type="button" value="重启" style="height:30px;width:60px;color:White"
+           onclick="showToast()"/>
+    <input class="btn blue" type="button" value="关机" style="height:30px;width:60px;color:White"
+           onclick="showshutDown()"/>
+</p>
+    </fieldset>
+</form>
+<hr>
+<h2 style="color:red">功能按键</h2>
+<hr>
+<h3 style="color:blue">功能1：导医界面</h3>
+<p>
+    <input class="btn blue" style="height:30px;width:80px;color:White" type="submit" name="Submit2" value="点击"
+           onclick="firm()"/>
+</p>
+<hr>
+<h3 style="color:blue">功能2：文字转语音</h3>
+<p>文本：<input id="text" type="text" name="文本" value="请输入需要转换的文本"
+             style="height:20px;width:250px;color:red;background:HoneyDew  "/>
+</p>
+<p>音调(0,100)：<input id="yindiao" type="text" name="音调" value="50"
+                    style="height:20px;width:45px;color:red;background:HoneyDew"/>
+    音量(0,100)：<input id="yinliang" type="text" name="音量" value="50"
+                     style="height:20px;width:45px;color:red;background:HoneyDew"/>
+</p>
+<p>
+    <input class="btn blue" type="submit" name="Submit4" value="语音"
+           style="height:30px;width:80px;color:White"
+           onclick="showspeech(text.value,pitch.value,volume.value)"/>
+</p>
+<hr>
+<h3 style="color:blue">功能3：访问后台数据</h3>
+<p>请求码：<input id="data" type="text" name="rescode" value="0001&Dev1"
+              style="height:20px;width:230px;color:red;background:HoneyDew"/>
+</p>
+<p>
+    <input class="btn blue" style="height:30px;width:80px;color:White" class="btn blue"
+           type="submit" name="Submit5"
+           value="提交"
+           onclick="showdata(element.value)"/>
+</p>
+<hr>
+<h3 style="color:blue">功能4：对话框访问数据</h3>
+<p>
+    <input class="btn blue" style="height:30px;width:80px;color:White" type="submit" name="Submit3"
+           value="提交"
+           onclick="prom()"/>
+</p>
+
+
+<hr>
+<form method="post" action="#">
+    <fieldset>
+        <legend style="color:red">数据显示区</legend>
+        <p id="demo" style="width:300px;color:DarkGreen"></p>
+    </fieldset>
+</form>
+</body>
+<script language="javascript">
+var element = document.getElementById("data")
+var text = document.getElementById("text")
+var pitch = document.getElementById("yindiao")
+var volume = document.getElementById("yinliang")
+
+ function firm()
+ {
+     if(confirm("请你前往GG导医系统排号？"))
+     {
+         location.href="http://www.ggzzrj.cn:8080/demo/";
+     }
+     else
+     {
+         alert("你选择了不去！那你自己排队去吧");
+     }
+ }
+ function prom()
+ {
+     var str=prompt("请输入正确的json请求包","idLevel：0001&idDev：Dev1");
+     if(str)
+     {
+              document.getElementById("demo").innerHTML= str
+
+     }
+     else{
+      document.getElementById("demo").innerHTML= "感谢您的测试！"
+     }
+ }
+
+function showconfig() {
+        var str = myconfig.config();
+        document.getElementById("demo").innerHTML= str
+     }
+
+
+function showspeech(text,pitch,volume) {
+         myspeech.speech(text,pitch,volume);
+     }
+function showshutDown() {
+         myshutDown.shutDown();
+     }
+
+ function showdata(code) {
+        var str = mydata.data(code);
+        document.getElementById("demo").innerHTML= str
+     }
+
+
+
+
+</script>
+
+
+</html>
+
