@@ -1,1 +1,12 @@
 # GGBrowser
+GGBrowser浏览器
+描述：
+在手机开机后会自动运行GGBrowser浏览器的应用程序，浏览器打开后直接运行自写的HTML网页，并进行全屏显示，网页上有相关的功能按钮，通过android与js之间的交互调用，实现按钮在android中的各种功能，主要使用的技术是通过webview（该app使用的是腾讯的X5webview内核而非系统的内核）实现js对android函数的调用，首先通过WebSettings类对WebView进行配置和管理；然后给WebView对象添加JS接口，通过WebView的addJavascriptInterface方法去注入一个我们自己写的interface来映射JS中的对应的函数；最后返回相应的数据在HTML网页中进行显示。
+功能：
+1、APP自启动功能
+2、全屏显示（消除手机的状态栏）
+3、关机，重启
+4、自定义文字转语音（可自定义文本，音调，音量）
+5、通过json请求码访问后台数据并返回到网页显示
+6、访问HTML网页
+7、返回手机的硬件配置信息并在网页显示
